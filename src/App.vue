@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Chart.js</h1>
-    <bat-chart v-on:chart:refresh="refreshData" v-bind:propsdata="datasets"></bat-chart>
+    <bar-chart v-on:chart:refresh="refreshData" v-bind:propsdata="datasets"></bar-chart>
     <line-chart ></line-chart>
   </div>
 </template>
@@ -9,14 +9,14 @@
 <script>
 // import {Chart, LineController, LineElement, PointElement, LinearScale, Title} from 'chart.js';
 // Chart.register(LineController, LineElement, PointElement, LinearScale, Title);
-import BatChart from "@/components/BatChart.vue";
+import BarChart from "@/components/BarChart.vue";
 import LineChart from "@/components/LineChart.vue";
 import {CHART_COLORS, numbers, transparentize} from "@/utils/Utils";
 export default {
   name: 'App',
   components: {
     LineChart,
-    BatChart
+    BarChart
   },
   data() {
     const DATA_COUNT = 7;
@@ -39,12 +39,11 @@ export default {
   },
   methods: {
     refreshData() {
-      console.log('test')
       const DATA_COUNT = 3;
       const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
       this.datasets = [{
           label: 'Dataset 1',
-          data: {count: 0, min: 0, max: 0},
+          data: numbers(NUMBER_CFG),
           borderColor: CHART_COLORS.red,
           backgroundColor: transparentize(CHART_COLORS.red, 0.5),
         },

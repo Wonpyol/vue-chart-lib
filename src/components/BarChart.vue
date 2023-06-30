@@ -1,14 +1,14 @@
 <template>
   <div>
     <canvas ref="barChart" id="barChart"></canvas>
-    <button @click="refreshButton">refresh</button>
+    <button @click="this.$emit('chart:refresh')">refresh</button>
   </div>
 </template>
 
 <script>
 import {months} from "@/utils/Utils";
 export default {
-  name: "BatChart",
+  name: "BarChart",
   props: ['propsdata'],
   mounted() {
     const labels = months({count: 7});
@@ -34,12 +34,6 @@ export default {
     }
     new this.$_Chart(this.$refs.barChart, config)
   },
-  //TODO 데이터 리프레쉬 되도록 해보자!
-  methods:{
-    refreshButton() {
-      this.$emit('chart:refresh')
-    }
-  }
 }
 </script>
 
